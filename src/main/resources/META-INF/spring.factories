@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+ com.empathybroker.samples.autoconfigure.SampleAutoConfiguration
+ #https://medium.com/empathyco/how-spring-boot-autoconfiguration-works-6e09f911c5ce#:~:text=Autoconfiguration%20is%20a%20feature%20that,the%20activation%20of%20some%20property.

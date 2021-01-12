@@ -15,34 +15,34 @@ public abstract class CrudService<T extends Comparable<CrudEntity>> {
 
     public abstract CrudRepository<T> getService();
 
-    protected abstract void validCreate(T entity);
+    protected abstract void internalCreate(T entity);
 
-    protected abstract void validUpdate(T newEntity);
+    protected abstract void internalUpdate(T newEntity);
 
-    protected abstract void validDelete(T entity);
+    protected abstract void internalDelete(T entity);
 
     @Transactional
     public T create(@Valid T entity) {
-        validCreate(entity);
+        internalCreate(entity);
         return getService().save(entity);
     }
 
     @Transactional
     public T update(@Valid T entity) {
-        validUpdate(entity);
+        internalUpdate(entity);
         return getService().save(entity);
     }
 
     @Transactional
     public void delete(@Valid T entity) {
-        validDelete(entity);
+        internalDelete(entity);
         getService().delete(entity);
     }
 
     @Transactional
     public void delete(Long entityId) throws NotFoundException {
         T entity = findById(entityId);
-        validDelete(entity);
+        internalDelete(entity);
         getService().delete(entity);
     }
 
