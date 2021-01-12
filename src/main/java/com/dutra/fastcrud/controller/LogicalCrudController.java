@@ -16,7 +16,7 @@ public abstract class LogicalCrudController<T extends LogicalCrudEntity, ID> ext
 
     public abstract LogicalCrudService<T, ID> getService();
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ApiResponse> inactive(@RequestParam("id") Long id) throws ChangeSetPersister.NotFoundException {
         return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Recovered.", getService().deactivated((ID) id)));
     }
