@@ -6,7 +6,7 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
 import javax.validation.Valid;
 
-public abstract class LogicalCrudService<T extends LogicalCrudEntity, ID> extends CrudService<T, ID>{
+public abstract class LogicalCrudService<T extends LogicalCrudEntity> extends CrudService<T>{
 
     @Override
     public void delete(@Valid T entity) {
@@ -14,7 +14,7 @@ public abstract class LogicalCrudService<T extends LogicalCrudEntity, ID> extend
     }
 
     @Override
-    public boolean delete(ID entityId) {
+    public boolean delete(Long entityId) {
         throw new NotImplementedException();
     }
 
@@ -30,14 +30,14 @@ public abstract class LogicalCrudService<T extends LogicalCrudEntity, ID> extend
         return getRepository().save(entity);
     }
 
-    public T activate(ID entityId) throws NotFoundException {
+    public T activate(Long entityId) throws NotFoundException {
         T entity = findById(entityId);
         entity.activate();
         delete(entity);
         return getRepository().save(entity);
     }
 
-    public T deactivated(ID entityId) throws NotFoundException {
+    public T deactivated(Long entityId) throws NotFoundException {
         T entity = findById(entityId);
         entity.deactivate();
         delete(entity);

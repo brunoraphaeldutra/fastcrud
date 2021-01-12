@@ -10,9 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-public abstract class CrudController<T extends CrudEntity, ID> extends AbstractController<T, AbstractSpecification> {
+public abstract class CrudController<T extends CrudEntity> extends AbstractController<T, AbstractSpecification> {
 
-    public abstract CrudService<T, ID> getService();
+    public abstract CrudService<T> getService();
 
     @PostMapping
     public ResponseEntity<ApiResponse> create(@RequestBody T entity){
@@ -25,8 +25,8 @@ public abstract class CrudController<T extends CrudEntity, ID> extends AbstractC
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse> inactive(@RequestParam("id") Long id) throws ChangeSetPersister.NotFoundException {
-        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Recovered.", getService().delete((ID) id)));
+    public ResponseEntity<ApiResponse> delete(@PathVariable("id") Long id) throws ChangeSetPersister.NotFoundException {
+        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Recovered.", getService().delete(id)));
     }
 
     @GetMapping
@@ -37,7 +37,7 @@ public abstract class CrudController<T extends CrudEntity, ID> extends AbstractC
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse> getById(@RequestParam("id") Long id) throws ChangeSetPersister.NotFoundException {
-        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Recovered.", getService().findById((ID) id)));
+    public ResponseEntity<ApiResponse> getById(@PathVariable("id") Long id) throws ChangeSetPersister.NotFoundException {
+        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Recovered.", getService().findById(id)));
     }
 }

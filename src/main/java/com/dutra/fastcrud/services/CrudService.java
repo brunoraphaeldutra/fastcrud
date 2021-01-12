@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
 
-public abstract class CrudService<T extends CrudEntity, ID> {
+public abstract class CrudService<T extends CrudEntity> {
 
-    public abstract CrudRepository<T, ID> getRepository();
+    public abstract CrudRepository<T> getRepository();
 
     protected abstract void internalCreate(T entity);
 
@@ -40,7 +40,7 @@ public abstract class CrudService<T extends CrudEntity, ID> {
     }
 
     @Transactional
-    public boolean delete(ID entityId) throws NotFoundException {
+    public boolean delete(Long entityId) throws NotFoundException {
         T entity = findById(entityId);
         internalDelete(entity);
         getRepository().delete(entity);
@@ -53,7 +53,7 @@ public abstract class CrudService<T extends CrudEntity, ID> {
     }
 
     @Transactional(readOnly = true)
-    public T findById(ID id) throws NotFoundException {
+    public T findById(Long id) throws NotFoundException {
         return getRepository().findById(id).orElseThrow(NotFoundException::new);
     }
 
