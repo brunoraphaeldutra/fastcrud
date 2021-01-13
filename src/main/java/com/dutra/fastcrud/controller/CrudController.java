@@ -16,17 +16,17 @@ public abstract class CrudController<T extends CrudEntity> extends AbstractContr
 
     @PostMapping
     public ResponseEntity<ApiResponse> create(@RequestBody T entity){
-        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Recovered.", getService().create(entity)));
+        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Created.", getService().create(entity)));
     }
 
     @PutMapping
     public ResponseEntity<ApiResponse> update(@RequestBody T entity) throws ChangeSetPersister.NotFoundException {
-        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Recovered.", getService().update(entity)));
+        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Updated.", getService().update(entity)));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> delete(@PathVariable("id") Long id) throws ChangeSetPersister.NotFoundException {
-        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Recovered.", getService().delete(id)));
+        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK, true, "Deleted.", getService().delete(id)));
     }
 
     @GetMapping

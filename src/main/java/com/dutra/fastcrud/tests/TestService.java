@@ -1,6 +1,6 @@
 package com.dutra.fastcrud.tests;
 
-import com.dutra.fastcrud.repositorys.CrudRepository;
+import com.dutra.fastcrud.repositories.CrudRepository;
 import com.dutra.fastcrud.services.LogicalCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,4 +30,14 @@ public class TestService extends LogicalCrudService<TestEntity> {
 
     @Autowired
     private TestRepository repository;
+
+    @Override
+    public void internalActivate(TestEntity entity) {
+
+    }
+
+    @Override
+    public void internalDeactivate(TestEntity entity) {
+
+    }
 }

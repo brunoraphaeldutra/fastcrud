@@ -1,4 +1,4 @@
-package com.dutra.fastcrud.repositorys;
+package com.dutra.fastcrud.repositories;
 
 import com.dutra.fastcrud.bases.CrudEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

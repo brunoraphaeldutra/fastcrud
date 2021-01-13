@@ -8,6 +8,9 @@ import javax.validation.Valid;
 
 public abstract class LogicalCrudService<T extends LogicalCrudEntity> extends CrudService<T>{
 
+    public abstract void internalActivate(T entity);
+    public abstract void internalDeactivate(T entity);
+
     @Override
     public void delete(@Valid T entity) {
         throw new NotImplementedException();
@@ -20,27 +23,27 @@ public abstract class LogicalCrudService<T extends LogicalCrudEntity> extends Cr
 
     public T activate(T entity){
         entity.activate();
-        delete(entity);
+        internalActivate(entity);
         return getRepository().save(entity);
     }
 
     public T deactivated(T entity){
         entity.deactivate();
-        delete(entity);
+        internalDeactivate(entity);
         return getRepository().save(entity);
     }
 
     public T activate(Long entityId) throws NotFoundException {
         T entity = findById(entityId);
         entity.activate();
-        delete(entity);
+        internalActivate(entity);
         return getRepository().save(entity);
     }
 
     public T deactivated(Long entityId) throws NotFoundException {
         T entity = findById(entityId);
         entity.deactivate();
-        delete(entity);
+        internalDeactivate(entity);
         return getRepository().save(entity);
     }
 

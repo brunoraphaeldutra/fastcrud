@@ -1,7 +1,7 @@
 package com.dutra.fastcrud.services;
 
 import com.dutra.fastcrud.bases.CrudEntity;
-import com.dutra.fastcrud.repositorys.CrudRepository;
+import com.dutra.fastcrud.repositories.CrudRepository;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
